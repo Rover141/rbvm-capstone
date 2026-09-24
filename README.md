@@ -14,6 +14,13 @@ This project builds a data-driven **Risk-Based Vulnerability Management (RBVM) E
 
 ## 2. Dataset & Data Cleaning
 The dataset synthesizes typical enterprise scanner records ($N=5,000$), threat feeds, and asset registry metadata.
+### Data Source & Methodology
+Due to enterprise data privacy policies and NDA constraints regarding internal infrastructure telemetry (such as IP addresses, internal hostnames, and specific patch levels), this project utilizes a **probabilistically generated synthetic vulnerability dataset** ($N=5,000$). 
+
+The dataset was engineered using custom Python scripts to accurately mirror real-world security telemetry:
+* **Real-World Distributions:** EPSS scores follow a realistic Beta distribution ($\alpha=0.5, \beta=5.0$) reflecting the heavily right-skewed nature of real-world exploitation probabilities.
+* **Correlated Threat Feeds:** Synthesizes fields modeled after NIST NVD (CVSS v3.1), CISA Known Exploited Vulnerabilities (KEV) catalog, and FIRST EPSS feeds.
+* **Organizational Metadata:** Injects asset criticality tiers and exposure flags (internet-facing vs. internal) to simulate a corporate asset inventory.
 
 ### Data Cleaning Summary:
 * **Missing Value Imputation:** $3\%$ of CVSS records contained missing values due to scanner parse errors. These were imputed using median CVSS scores grouped by `asset_criticality`.
