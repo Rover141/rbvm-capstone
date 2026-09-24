@@ -1,0 +1,13 @@
+# Python environment
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# Jupyter Checkpoints
+.ipynb_checkpoints/
+
+# OS / Editor clutter
+.DS_Store
+.vscode/
+.idea/
