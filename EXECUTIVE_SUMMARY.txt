@@ -1,0 +1,36 @@
+================================================================================
+CAPSTONE ASSIGNMENT 20.1: INITIAL REPORT & EDA SUMMARY
+Project Title: Risk-Based Vulnerability Management (RBVM) Engine
+Author: Vishesh Grover
+Repository Link: https://github.com/<your-username>/rbvm-capstone
+================================================================================
+
+1. EXECUTIVE SUMMARY:
+This project transitions enterprise vulnerability management from traditional, static 
+CVSS scoring to a Risk-Based Vulnerability Management (RBVM) approach. By synthesizing 
+scanner telemetry with dynamic threat intelligence (EPSS, CISA KEV) and asset criticality, 
+the RBVM engine eliminates alert fatigue and isolates high-risk threats requiring 
+immediate 24-hour remediation.
+
+2. DATASET METHODOLOGY:
+Due to enterprise data privacy policies regarding internal network topology, 
+a synthetic dataset (N=5,000) was programmatically generated using Python (numpy/pandas). 
+The dataset accurately models realistic security distributions, including right-skewed 
+EPSS probabilities (Beta distribution) and CISA Known Exploited Vulnerability (KEV) ratios.
+
+3. KEY EDA FINDINGS:
+- Less than 10% of total vulnerabilities exhibit active exploit potential (EPSS > 0.35).
+- CVSS scores alone create severe noise: numerous CVSS 9.0+ vulnerabilities lack exploit 
+  activity, while targeted lower-CVSS bugs (6.0–7.5) are actively exploited in the wild.
+- Internet-facing assets account for >70% of total high-risk exposure.
+
+4. BASELINE MODEL RESULTS:
+- Model Selected: Decision Tree Classifier (max_depth=5)
+- Primary Metric: Recall (Target Class: Action Required) = ~0.94
+- ROC-AUC Score: ~0.96
+- Business Impact: Reduces standard patching volume by >75% while capturing ~94% 
+  of critical, actively exploited threats.
+
+5. DELIVERABLE LOCATIONS:
+- Jupyter Notebook: notebooks/01_eda_and_baseline_model.ipynb
+- Project README: README.md
